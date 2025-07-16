@@ -10,16 +10,19 @@
   <h1>Malla Curricular Interactiva - Ingeniería</h1>
 
   <div id="malla-container">
-    <!-- Semestres del 1 al 11 -->
-    ${[...Array(11).keys()].map(i => `
-      <div class="semestre">
-        <h2>Semestre ${i + 1}</h2>
-        <div id="semestre${i + 1}" class="semestre-grid"></div>
-      </div>
-    `).join("")}
+    <div class="semestre"><h2>Semestre 1</h2><div id="semestre1" class="semestre-grid"></div></div>
+    <div class="semestre"><h2>Semestre 2</h2><div id="semestre2" class="semestre-grid"></div></div>
+    <div class="semestre"><h2>Semestre 3</h2><div id="semestre3" class="semestre-grid"></div></div>
+    <div class="semestre"><h2>Semestre 4</h2><div id="semestre4" class="semestre-grid"></div></div>
+    <div class="semestre"><h2>Semestre 5</h2><div id="semestre5" class="semestre-grid"></div></div>
+    <div class="semestre"><h2>Semestre 6</h2><div id="semestre6" class="semestre-grid"></div></div>
+    <div class="semestre"><h2>Semestre 7</h2><div id="semestre7" class="semestre-grid"></div></div>
+    <div class="semestre"><h2>Semestre 8</h2><div id="semestre8" class="semestre-grid"></div></div>
+    <div class="semestre"><h2>Semestre 9</h2><div id="semestre9" class="semestre-grid"></div></div>
+    <div class="semestre"><h2>Semestre 10</h2><div id="semestre10" class="semestre-grid"></div></div>
+    <div class="semestre"><h2>Semestre 11</h2><div id="semestre11" class="semestre-grid"></div></div>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
