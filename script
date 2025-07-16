@@ -1,1 +1,114 @@
+const malla = [
+  // Semestre 1
+  { nombre: "Ma1001 – Introducción al cálculo", semestre: 1 },
+  { nombre: "Ma1101 – Introducción al álgebra", semestre: 1 },
+  { nombre: "FI1000 – Introducción a la física clásica", semestre: 1 },
+  { nombre: "CC1000 – Herramientas computacionales", semestre: 1 },
+  { nombre: "CD1100 – Desafíos de innovación", semestre: 1 },
+  { nombre: "CT1211 – Biología aplicada", semestre: 1 },
+
+  // Semestre 2
+  { nombre: "MA1002 – Cálculo Diferencial e Integral", semestre: 2, requisitos: ["Ma1001"] },
+  { nombre: "MA1102 – Álgebra Lineal", semestre: 2, requisitos: ["Ma1101"] },
+  { nombre: "FI1100 – Física Moderna", semestre: 2, requisitos: ["FI1000"] },
+  { nombre: "CC1002 – Introducción a la Programación", semestre: 2 },
+  { nombre: "Proyecto de innovación", semestre: 2 },
+  { nombre: "Boxeo", semestre: 2 },
+
+  // Semestre 3
+  { nombre: "Cálculo en Varias Variables", semestre: 3, requisitos: ["MA1002"] },
+  { nombre: "Ecuaciones Diferenciales Ordinarias", semestre: 3 },
+  { nombre: "Métodos Experimentales", semestre: 3 },
+  { nombre: "Mecánica", semestre: 3 },
+  { nombre: "Química", semestre: 3 },
+
+  // Semestre 4
+  { nombre: "Economía", semestre: 4 },
+  { nombre: "Cálculo avanzado y aplicaciones", semestre: 4 },
+  { nombre: "Electromagnetismo", semestre: 4 },
+  { nombre: "Termodinámica Física", semestre: 4 },
+  { nombre: "Electivo 2", semestre: 4 },
+
+  // Semestre 5
+  { nombre: "Análisis y diseño de circuitos eléctricos", semestre: 5 },
+  { nombre: "Sistemas digitales", semestre: 5 },
+  { nombre: "Electromagnetismo aplicado", semestre: 5 },
+  { nombre: "Probabilidad y procesos estocásticos", semestre: 5 },
+  { nombre: "Seminario de innovación", semestre: 5 },
+
+  // Semestre 6
+  { nombre: "Laboratorio de ingeniería eléctrica", semestre: 6 },
+  { nombre: "Circuitos eléctricos analógicos", semestre: 6 },
+  { nombre: "Análisis de señales", semestre: 6 },
+  { nombre: "Análisis de sistemas dinámicos", semestre: 6 },
+  { nombre: "Electivo 3-4", semestre: 6 },
+
+  // Semestre 7
+  { nombre: "Conversión de energía y electrónica", semestre: 7 },
+  { nombre: "Principios de comunicaciones", semestre: 7 },
+  { nombre: "Fundamentos de control", semestre: 7 },
+  { nombre: "Optimización", semestre: 7 },
+  { nombre: "Electivo otros departamentos", semestre: 7 },
+  { nombre: "Práctica profesional 1", semestre: 7 },
+
+  // Semestre 8
+  { nombre: "Núcleo línea de especialización", semestre: 8 },
+  { nombre: "Laboratorio", semestre: 8 },
+  { nombre: "Programación avanzada", semestre: 8 },
+  { nombre: "Formulación y evaluación de proyectos", semestre: 8 },
+  { nombre: "Electivo", semestre: 8 },
+  { nombre: "Examen de inglés", semestre: 8 },
+
+  // Semestre 9
+  { nombre: "Taller de proyectos tecnológicos", semestre: 9 },
+  { nombre: "Electivos de especialización", semestre: 9 },
+  { nombre: "Práctica profesional 2", semestre: 9 },
+
+  // Semestre 10
+  { nombre: "Taller de emprendimiento", semestre: 10 },
+  { nombre: "Trabajo de título (inicio)", semestre: 10 },
+  { nombre: "Electivos de especialización", semestre: 10 },
+
+  // Semestre 11
+  { nombre: "Taller de desempeño profesional", semestre: 11 },
+  { nombre: "Trabajo de título final", semestre: 11 },
+  { nombre: "Examen de inglés 2", semestre: 11 }
+];
+
+const estado = {};
+
+function renderMalla() {
+  for (let i = 1; i <= 11; i++) {
+    const contenedor = document.getElementById(`semestre${i}`);
+    if (contenedor) contenedor.innerHTML = "";
+  }
+
+  malla.forEach(ramo => {
+    const div = document.createElement("div");
+    div.textContent = ramo.nombre;
+    div.className = "ramo";
+
+    if (!requisitosCumplidos(ramo)) {
+      div.classList.add("bloqueado");
+    } else if (estado[ramo.nombre]) {
+      div.classList.add("aprobado");
+    }
+
+    div.onclick = () => {
+      if (!requisitosCumplidos(ramo)) return;
+      estado[ramo.nombre] = !estado[ramo.nombre];
+      renderMalla();
+    };
+
+    const contenedor = document.getElementById(`semestre${ramo.semestre}`);
+    if (contenedor) contenedor.appendChild(div);
+  });
+}
+
+function requisitosCumplidos(ramo) {
+  if (!ramo.requisitos) return true;
+  return ramo.requisitos.every(req => estado[req]);
+}
+
+renderMalla();
 
