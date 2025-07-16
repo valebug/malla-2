@@ -1,1 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Malla Ingeniería Interactiva</title>
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+  <h1>Malla Curricular Interactiva - Ingeniería</h1>
+
+  <div id="malla-container">
+    <!-- Semestres del 1 al 11 -->
+    ${[...Array(11).keys()].map(i => `
+      <div class="semestre">
+        <h2>Semestre ${i + 1}</h2>
+        <div id="semestre${i + 1}" class="semestre-grid"></div>
+      </div>
+    `).join("")}
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
 
